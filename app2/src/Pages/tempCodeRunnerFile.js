@@ -1,0 +1,1 @@
+      <MeetupList meetups={favoritesCtx.favourites} />
