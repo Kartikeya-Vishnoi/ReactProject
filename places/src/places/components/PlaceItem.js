@@ -3,6 +3,7 @@ import Card from "../../shared/UIElements/Card";
 import Button from "../../shared/FormElements/Button";
 import React, { useState } from "react";
 import Modal from "../../shared/UIElements/Modal";
+//import Map from "../../shared/UIElements/Map";
 
 function PlaceItem(props) {
   const [showMap, setShowMap] = useState(false);
@@ -23,7 +24,26 @@ function PlaceItem(props) {
         footer={<Button onClick={closeMapHandler}>CLOSE</Button>}
       >
         <div className="map-container">
-            Map
+          <iframe
+            title="map"
+            width="100%"
+            height="100%"
+            frameBorder="0"
+            scrolling="no"
+            marginHeight="0"
+            marginWidth="0"
+            src={
+              "https://maps.google.com/maps?q=" +
+              props.coordinates.lat.toString() +
+              "," +
+              props.coordinates.lng.toString() +
+              "&t=&z=15&ie=UTF8&iwloc=&output=embed"
+            }
+          ></iframe>
+          <script
+            type="text/javascript"
+            src="https://embedmaps.com/google-maps-authorization/script.js?id=5a33be79e53caf0a07dfec499abf84b7b481f165"
+          ></script>
         </div>
       </Modal>
       <li className="place-item">
@@ -37,7 +57,9 @@ function PlaceItem(props) {
             <h3>{props.description}</h3>
           </div>
           <div className="place-item__actions">
-            <Button inverse onClick={openMapHandler}>VIEW ON MAP</Button>
+            <Button inverse onClick={openMapHandler}>
+              VIEW ON MAP
+            </Button>
             <Button to={`/places/${props.id}`}>EDIT</Button>
             <Button danger>DELETE</Button>
           </div>
